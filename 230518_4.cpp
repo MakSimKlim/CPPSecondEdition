@@ -35,7 +35,7 @@ void ShowArray(int ar[], int size) // функция вывода массива
 	cout << "\n";
 }
 
-int Func(int ar[], int size, bool a = true) // функция (см задание в шапке файла)
+int Func(int ar[], int size, bool a = true) // функция (которая выводит max / min и по умолчанию находит максимум)
 // задан параметр по умолчанию true, если функция должна находить максимум
 {
 	if (a == true)
