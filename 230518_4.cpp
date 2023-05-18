@@ -36,6 +36,7 @@ void ShowArray(int ar[], int size) // функция вывода массива
 }
 
 int Func(int ar[], int size, bool a = true) // функция (см задание в шапке файла)
+// задан параметр по умолчанию true, если функция должна находить максимум
 {
 	if (a == true)
 	{
@@ -96,7 +97,7 @@ int main()
 	FillArray(ar, size);
 	ShowArray(ar, size);
 	Func(ar, size); // функция с параметром по умолчанию True, то есть максимум в данном случае
-	//Func(ar, size, false);
+	//Func(ar, size, false); // функция выведет минимум, т.к. параметр задан false
 
 
 	return 0;
