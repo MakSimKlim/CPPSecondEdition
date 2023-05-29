@@ -50,9 +50,55 @@ void ShowArray(int ar[], int size)
 	cout << endl;
 }
 
+const int SIZE = 10;
+
+template <typename T>
+void QuickSort(T a[], int N)
+{
+	// a[] - сортируемый массив
+	// N - индекс последнего элемента
+	int i = 0, j = N;
+	// temp - временный элемент для обмена, р - опорный элемент (середина отрезкеа N)
+	T temp, p;
+	p = a[ N / 2 ]; // N/2 - т.к. p  - середина отрезка N
+
+	do // условие выхода из цикла
+	{
+		while ( a[i] < p ) i++; // идем к концу массива
+		while ( a[j] > p ) j--; // идем к началу массива
+		if (i <= j)
+		{
+			temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+			i++; j--;//чтобы не исключать опорный элемент
+		}
+	} while (i <= j);
+
+	//если еще есть что-то сортировать
+	if (j > 0) QuickSort(a, j);
+	//если еще есть что-то сортировать
+	if (N > i) QuickSort(a + i, N - i);//адрес а сместили на адрес i элемента; N-i - длина массива; опорный элемент - середина N-i
+
+}
+
 int main()
 {
 	setlocale(LC_ALL, "Rus");
+
+
+	// создание массива
+	int ar[SIZE];
+	FillArray(ar, SIZE);
+	ShowArray(ar, SIZE);
+
+	// быстрая сортировка
+	QuickSort(ar, SIZE - 1);
+	cout << "Sorted: " << "\n";
+	ShowArray(ar, SIZE);
+
+
+
 
 	return 0;
 }
