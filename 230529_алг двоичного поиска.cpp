@@ -13,6 +13,8 @@
 
 #include <iostream>
 
+#define SIZE 10 // директива препроцессора
+
 using namespace std;
 
 int RandInt(int min, int max)
@@ -34,8 +36,6 @@ void ShowArray(int ar[], int size)
 		cout << ar[i] << " ";
 	cout << endl;
 }
-
-const int SIZE = 10;
 
 // функция быстрой сортировки
 template <typename T>
@@ -90,15 +90,12 @@ int BinarySearch(T a[], int Lb, int Ub, T key)
 		{
 			return -1;// -1  традиционный сигнал, что элемент не найден
 		}
-		
 	}
-
 }
 
 int main()
 {
 	setlocale(LC_ALL, "Rus");
-
 
 	// создание массива
 	int ar[SIZE];
@@ -114,7 +111,7 @@ int main()
 	cout << "Please enter number to search: "<< "\n";
 	cin >> k;
 	int i = BinarySearch(ar, 0, SIZE - 1, k);
-	if (i>=0)
+	if ( i >= 0)
 	{
 		cout << "Key: " << k << " found at position " << i + 1 << "\n";
 	}
