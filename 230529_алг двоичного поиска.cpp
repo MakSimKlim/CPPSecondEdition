@@ -69,29 +69,52 @@ void QuickSort(T a[], int N)
 }
 
 // алгоритм бинарного поиска (без рекурсии)
+//template <typename T>
+//int BinarySearch(T a[], int Lb, int Ub, T key)
+//{
+//	int M;// индекс диапазона (номер элемента)
+//	while (1)
+//	{
+//		M = (Lb + Ub) / 2;
+//		if (key < a[M])
+//		{
+//			Ub = M - 1;// опускаем верхнюю границу
+//		}
+//		else if (key > a[M])
+//		{
+//			Lb = M + 1;// поднимаем нижнюю границу
+//		}
+//		else
+//			return M;
+//		if (Lb > Ub)//если нижнняя граница стала выше чем верхняя, то числа нет и выходим
+//		{
+//			return -1;// -1  традиционный сигнал, что элемент не найден
+//		}
+//	}
+//}
+
+// алгоритм бинарного поиска с рекурсией
 template <typename T>
 int BinarySearch(T a[], int Lb, int Ub, T key)
 {
-	int M;
-	while (1)
+	if (Lb > Ub)
 	{
-		M = (Lb + Ub) / 2;
-		if (key < a[M])
-		{
-			Ub = M - 1;
-		}
-		else if (key > a[M])
-		{
-			Lb = M + 1;
-		}
-		else
-			return M;
-		if (Lb > Ub)
-		{
-			return -1;// -1  традиционный сигнал, что элемент не найден
-		}
+		return -1;
 	}
+	int M = (Lb + Ub) / 2;
+	if (key < a[M])
+	{
+		return BinarySearch(a, Lb, M - 1, key);
+	}
+	else if (key > a[M])
+	{
+		return BinarySearch(a, M + 1, Ub, key);
+	}
+	else
+		return M;
 }
+
+
 
 int main()
 {

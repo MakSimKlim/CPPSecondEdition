@@ -49,7 +49,7 @@ using namespace std;
 //
 //}
 // 
-// 2)
+ //2)
 int OutputSumm(int a, int b)
 {
 	if (a==b)
@@ -63,6 +63,7 @@ int OutputSumm(int a, int b)
 }
 
 
+
 int main()
 {
 	setlocale(LC_ALL, "Rus");
@@ -70,11 +71,10 @@ int main()
 	//OutputSymbol('*', 5);
 
 	int a, b;
-
 	cout << "Введите числа диапазона:" << "\n";
 	cin >> a >> b;
+	cout << OutputSumm(a, b);
 
-	OutputSumm(a,b);
 
 	return 0;
 }
