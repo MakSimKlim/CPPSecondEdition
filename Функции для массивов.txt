@@ -17,3 +17,30 @@ void ShowArray(int ar[], int size)
 		cout << ar[i] << " ";
 	cout << endl;
 }
+
+template <class T>
+void QuickSort(T a[], int N)
+{
+	//a[] - сортируемый массив
+	//N - индекс последнего элемента
+	int i = 0, j = N;
+	//temp - временный элемент для обмена, p - опорный элемент
+	T temp, p;
+	p = a[N / 2];
+
+	do
+	{
+		while (a[i] < p) i++;
+		while (a[j] > p) j--;
+		if (i <= j)
+		{
+			temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+			i++; j--;
+		}
+	} while (i <= j);
+
+	if (j > 0) QuickSort(a, j);
+	if (N > i) QuickSort(a+i, N - i);
+}

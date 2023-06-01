@@ -82,6 +82,19 @@ void MassivPointers()
 
 
 }
+// одинаковые записи:
+// int ar[]
+// int* ar
+// сумма элементов массива
+int GetArSum(int* ptr, int size)
+{
+	int sum = 0;
+	for (int i = 0; i < size; i++, ptr++)
+	{
+		sum += *ptr;
+		return sum;
+	}
+}
 
 int main()
 {
@@ -101,6 +114,10 @@ int main()
 		cout << *(ptr + i) << " ";// эквивалентная запись *(arr+i) или ptr[i]
 	}
 	cout << "\n";
+
+	cout << "\n";
+	cout << "Sum: " << GetArSum(ptr, size);
+
 
 
 }
