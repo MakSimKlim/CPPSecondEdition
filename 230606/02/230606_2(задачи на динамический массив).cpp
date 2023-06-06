@@ -15,7 +15,26 @@
 
 using namespace std;
 
-
+void FillArrayCute(int* ar, int size)
+{
+	int sumElem = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (ar[i] > 0)
+		{
+			//cout << ar[i] << " ";
+			sumElem++;
+		}
+	}
+	cout << sumElem << "\n";
+}
+//void ShowArrayCute(int* ar, int sizeP)
+//{
+//	for (int i = 0; i < sizeP; i++)
+//		cout << ar[i] << " ";
+//	cout << endl;
+//}
+//
 
 int main()
 {
@@ -31,6 +50,9 @@ int main()
 	delete[] dynArr;
 	cout << endl;
 
+	FillArrayCute(dynArr, size);
+	//int* dynArrCute = new int[]
+	
 
 
 
