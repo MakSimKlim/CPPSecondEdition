@@ -44,7 +44,7 @@ int main()
 			fprintf(f, "%1d", arr[i]);
 			fprintf(f, "\n");
 		}
-		if (fclose(f) == EOF)
+		if (fclose(f) == EOF)// End Of File (EOF)
 		{
 			cout << "File couldn't be closed " << endl;
 		}
