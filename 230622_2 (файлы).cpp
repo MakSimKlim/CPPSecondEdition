@@ -294,24 +294,36 @@ int main()
 	const char* path3 = "D:\\Климов\\CPP повторение\\Example\\binary3.dat";
 
 	FILE* f;// доступ к файлу осущ с помощью указателя на структуру файла
-	
+
 	// создаем динамический массив с указанием значений пользователем
 	int n;
 	cout << "Enter size of massive: " << endl;
 	cin >> n;
 	//const int n = 5;
-	int* arr = new int;
+	int* arr = new int[n];
+	int* arr_rev = arr;
 	cout << "Enter numbers of massive: " << endl;
 	for (int i = 0; i < n; i++)
 	{
 		cin >> arr[i];
 	}
+	cout << endl << endl;
+
+	cout << "Start massive: ";
 	for (int j = 0; j < n; j++)
 	{
-		cout << arr[j];
+		cout << arr[j]<< " ";
 	}
-	//cout << endl;
-	
+	cout << endl << endl;
+
+	cout << "Reverse massive: ";
+
+	for (int l = n - 1; l >= 0; l--)
+	{
+		cout << arr_rev[l] << " ";
+	}
+	cout << endl << endl;
+
 	// записываем в первый файл массив как есть
 	if (fopen_s(&f, path, "wb") != NULL)
 	{
@@ -319,32 +331,32 @@ int main()
 	}
 	else
 	{
-		fwrite(&arr[0], sizeof(int), n, f);
+		fwrite(&arr[0], sizeof(float), n, f);
 		fclose(f);
 	}
-	// записываем во второй файл массив как есть
+	// записываем во второй файл обратный массив
 	if (fopen_s(&f, path2, "wb") != NULL)
 	{
 		cout << "The file couldn't be opened!\nCode: " << endl;
 	}
 	else
 	{
-		fwrite(&arr[0], sizeof(int), n, f);
+		fwrite(&arr_rev[0], sizeof(float), n, f);
 		fclose(f);
 	}
-	// записываем в третий файл массив как есть
-	if (fopen_s(&f, path3, "wb") != NULL)
-	{
-		cout << "The file couldn't be opened!\nCode: " << endl;
-	}
-	else
-	{
-		fwrite(&arr[0], sizeof(int), n, f);
-		fclose(f);
-	}
+	//// записываем в третий файл массив как есть
+	//if (fopen_s(&f, path3, "wb") != NULL)
+	//{
+	//	cout << "The file couldn't be opened!\nCode: " << endl;
+	//}
+	//else
+	//{
+	//	fwrite(&arr[0], sizeof(int), n, f);
+	//	fclose(f);
+	//}
 
 	// для проверки правильности записи считываем из файла значения и выводим в консоль
-	int done = fopen_s(&f, path, "rb");
+	int done = fopen_s(&f, path2, "rb");
 	int a;
 	if (done != NULL)
 	{
@@ -353,14 +365,34 @@ int main()
 	}
 	else
 	{
-		for (int i = 0; i < n; i++)
+		cout << "Read from binary.dat: ";
+		for (int z = 0; z < n; z++)
 		{
-			fread(&a, sizeof(float), 1, f);
+			fread(&a, sizeof(int), 1, f);
 			cout << a << " ";
 		}
 		cout << endl;
 		fclose(f);
 	}
+
+	//int done2 = fopen_s(&f2, path2, "rb");
+	//int a2;
+	//if (done2 != NULL)
+	//{
+	//	cout << "The file couldn't be opened!\nCode: " << done2 << endl;
+
+	//}
+	//else
+	//{
+	//	cout << "Read from binary2.dat: ";
+	//	for (int p = 0; p < n; p++)
+	//	{
+	//		fread(&a2, sizeof(int), 1, f2);
+	//		cout << a2 << " ";
+	//	}
+	//	cout << endl;
+	//	fclose(f2);
+	//}
 
 
 
