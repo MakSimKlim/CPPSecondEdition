@@ -1,6 +1,6 @@
 #pragma once
 
-void ViewNameProgram();
+void ConsoleSettings();
+void PseudographicsNameProgram();
 void EndOfProgram();
-void MenuOfProgram();
-
+int StartMenuOfProgram();
