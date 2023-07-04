@@ -8,11 +8,18 @@ using namespace std;
 
 int main()
 {
-    ConsoleSettings();
+    setlocale(LC_ALL, "Rus");
 
-    PseudographicsNameProgram();
+   //ConsoleSettings();
 
-    StartMenuOfProgram();
+   //PseudographicsNameProgram();
+
+   //MenuProgramClassic();
+
+   
+    StartMenuOfProgram(4);
+
+   ChoiceInput(3);
 
     return 0;
 }
