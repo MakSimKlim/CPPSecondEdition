@@ -92,4 +92,10 @@ using namespace std;
 
 	}
 
-
+	// деструктор 
+	Student::Student()
+	{
+		cout << "Destructor of " << name;
+		delete[] visits;
+		delete[] grades;
+	}
