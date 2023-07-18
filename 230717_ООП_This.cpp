@@ -104,7 +104,7 @@ class DynArray
 public:
     DynArray(int sizeP) :arr{ new int[sizeP] }, size{ sizeP }
     {
-        cout << "DynArr constructed for" << size << "elements" << this << endl;
+        cout << "DynArr constructed for " << size << " elements at " << this << endl;
     }
     DynArray() : DynArray{ 5 } {};
     //DynArray(const DynArray& obj) : arr{ obj.arr }, size{ obj.size }// поведение по умолчанию, нужен конструктор копирования, т.к. возникала ошибка при удалении деструктором
@@ -115,7 +115,7 @@ public:
         {
             arr[i] = obj.arr[i];
         }
-        cout << "DynArr copied at" << this << endl;
+        cout << "DynArr copied at " << this << endl;
 
     }
     int getAt(int index) { return arr[index]; }
@@ -129,13 +129,18 @@ public:
     }
     void randomize()
     {
-    
+        for (int i = 0; i < size; i++)
+        {
+            arr[i] = rand() % 100;
+        }
     
     }
 
 
     ~DynArray()
     {
+        if(arr != nullptr)
+        delete[] arr;
         cout << "DynArr destroyed" << this << endl;
     }
 
