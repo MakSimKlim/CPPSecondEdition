@@ -1,4 +1,4 @@
-﻿// 230718_ООП_Book
+// 230718_ООП_Book
 
 
 #include <iostream>
@@ -6,14 +6,12 @@
 
 using namespace std;
 
-
-
 int main()
 {
 
-    Book publication {"Alex", "Captain Daughter", 1836, 950};
-    publication.Show();
+    Book publication1{ "Alex", "Captain Daughter", 1836, 950 };
 
-    
+    publication1.print(); cout << endl;
+
 }
 
