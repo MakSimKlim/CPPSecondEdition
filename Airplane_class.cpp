@@ -30,6 +30,21 @@ public:
 		return NumberPassengers > f.NumberPassengers;
 	}
 
+	// перегрузка оператора копирования
+	bool operator=(const Airplane& a)
+	{
+		cout << "перегрузка оператора копирования";
+		return NumberPassengers = a.NumberPassengers;
+	}
+	// перегрузка оператора перемещения
+	bool operator=(Airplane&& m)
+	{
+		cout << "перегрузка оператора перемещения";
+		return NumberPassengers = m.NumberPassengers;
+	}
+
+
+
 	// конструктор копирования
 	// По умолчанию компилятор при компиляции классов генерирует специальный конструктор - 
 	// конструктор копирования, который позволяет создать объект на основе другого объекта 
@@ -49,14 +64,20 @@ public:
 	// вместо копирования данных они просто перемещаются из одной копии объекта в другую
 	// Чтобы указатель перемещаемого объекта moved перестал указывать на эту область памяти, 
 	// и соответственно чтобы в деструкторе объекта moved не было ее освобождения, передаем указателю значение nullptr.
-	Airplane(Airplane&& moved)
+	// В приведенной выше общей форме используется ключевое слово noexcept. Этот спецификатор указывает, 
+	// что наша функция (конструктор переноса) не генерирует (не выбрасывает) исключение или аварийно завершает свою работу.
+	Airplane(Airplane&& moved) noexcept
 	{
 		NumberFlights = moved.NumberFlights;      // перемещаем кол-во пассажиров
 		NumberPassengers = moved.NumberPassengers;// перемещаем номер рейса
-		moved.NumberFlights = nullptr;
 		cout << "Применён конструктор перемещения" << endl;
-
+		
+		//moved.NumberFlights = nullptr;
+		//moved.NumberPassengers = 0;
 	}
+		
+		
+	
 
 	// метод вывода информации о рейсах в консоль
 	void print()
@@ -65,10 +86,8 @@ public:
 	}
 
 	//// Деструктор
-	//~Airplane()
-	//{
-	//	delete[]
-	//}
+	~Airplane()
+	{	};
 
 private:
 
@@ -109,16 +128,30 @@ int main()
 
 
 	cout << endl;
-	// Создание объектов f5 f6 на основе объектов f1 f2 через конструктор перемещения
-	Airplane f5 { move(f1) };
-	Airplane f6 { move(f2) };
+	//// Создание объектов f5 f6 на основе объектов f1 f2 через конструктор перемещения
+	Airplane f5 = move(f1);
+	Airplane f6 = move(f2);
 	// вывод информации о рейсах:
 	f5.print();
 	f6.print();
 
+	// проверка о срабатывании оператора перемещения, исходник =0
+	cout << endl;
+	cout << "проверка о срабатывании оператора перемещения, исходник =0" << endl;
+	cout << "size f1 = " << sizeof f1 << "; size f5= " << sizeof f5 << endl;
+	cout << "size f2 = " << sizeof f2 << "; size f6= " << sizeof f6 << endl << endl;
 
+	// перегрузка оператора копирования
+	f3 = f1;
+	cout << endl;
+	f4 = f2;
+	cout << endl << endl;
 
+	// перегрузка оператора перемещения
+	f5 = move(f1);
+	cout << endl;
+	f6 = move(f2);
+	cout << endl << endl;
 
 	return 0;
 }
-
